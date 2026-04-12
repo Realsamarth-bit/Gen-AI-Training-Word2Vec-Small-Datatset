@@ -40,3 +40,9 @@ plt.scatter(tsne_result[:, 0], tsne_result[:, 1], color="blue")
 # Annotating each point with the corresponding word
 for i, word in enumerate(words):
     plt.text(tsne_result[i, 0] + 0.02, tsne_result[i, 1] + 0.02, word, fontsize=12)
+plt.title("Word Embeddings Visualization (Medical Domain)")
+plt.xlabel("Dimension 1")
+plt.ylabel("Dimension 2")
+plt.grid(True)
+
+plt.show()
