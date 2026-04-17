@@ -59,3 +59,20 @@ medical_corpus = [
     "The surgeon performed a minimally invasive procedure.",
     "The prescription includes pain relievers and anti-inflammatory drugs.",
     "The diagnosis confirmed a rare genetic disorder."
+    
+    words = list(model.wv.index_to_key)  # List of words in the vocabulary
+embeddings = np.array([model.wv[word] for word in words])  # Word embeddings for each word
+
+# Dimensionality reduction using t-SNE
+tsne = TSNE(n_components=2, random_state=42, perplexity=5)
+tsne_result = tsne.fit_transform(embeddings)
+# Visualization of word embeddings
+plt.figure(figsize=(10, 8))
+plt.scatter(tsne_result[:, 0], tsne_result[:, 1], color="blue")
+
+# Annotating each point with the corresponding word
+for i, word in enumerate(words):
+    plt.text(tsne_result[i, 0] + 0.02, tsne_result[i, 1] + 0.02, word, fontsize=12)
+plt.title("Word Embeddings Visualization (Medical Domain)")
+plt.xlabel("Dimension 1")
+plt.ylabel("Dimension 2")
